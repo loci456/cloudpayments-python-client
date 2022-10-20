@@ -244,11 +244,12 @@ Python 2.7 или 3.4+
     create_order(self, amount, currency, description, email=None,
                  send_email=None, require_confirmation=None,
                  invoice_id=None, account_id=None, phone=None,
-                 send_sms=None, send_whatsapp=None, culture_info=None)
+                 send_sms=None, send_whatsapp=None, culture_info=None,subscription_behavior=None)
 
 ``currency`` — одна из констант, определенных в классе ``Currency``.
 
 ``culture_info`` — одна из констант, определенных в классе ``CultureInfo``.
+``subscription_behavior`` - Для создания платежа с подпиской. Возможные значения: CreateWeekly, CreateMonthly
 
 В случае успеха возвращает объект типа ``Order``.
 
