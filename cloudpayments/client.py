@@ -188,8 +188,7 @@ class CloudPayments(object):
 
     def create_subscription(self, token, account_id, amount, currency,
                             description, email, start_date, interval, period,
-                            require_confirmation=False, max_periods=None,
-                            customer_receipt=None):
+                            require_confirmation=False, max_periods=None):
         params = {
             'Token': token,
             'AccountId': account_id,
@@ -204,8 +203,6 @@ class CloudPayments(object):
         }
         if max_periods is not None:
             params['MaxPeriods'] = max_periods
-        if customer_receipt is not None:
-            params['CustomerReceipt'] = customer_receipt
 
         response = self._send_request('subscriptions/create', params)
 
@@ -271,7 +268,7 @@ class CloudPayments(object):
     def create_order(self, amount, currency, description, email=None,
                      send_email=None, require_confirmation=None,
                      invoice_id=None, account_id=None, phone=None,
-                     send_sms=None, send_whatsapp=None, culture_info=None):
+                     send_sms=None, send_whatsapp=None, culture_info=None,subscription_behavior=None):
         params = {
             'Amount': amount,
             'Currency': currency,
@@ -295,6 +292,9 @@ class CloudPayments(object):
             params['SendWhatsApp'] = send_whatsapp
         if culture_info is not None:
             params['CultureInfo'] = culture_info
+        if subscription_behavior is not None:
+            params['SubscriptionBehavior'] = subscription_behavior
+
 
         response = self._send_request('orders/create', params)
 
